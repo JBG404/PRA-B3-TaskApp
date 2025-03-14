@@ -7,9 +7,9 @@
 //Deze config wordt hierna _niet_ meegestuurd naar je groepsgenoten. Zo kan iedereen zijn eigen wachtwoord, etc. invullen.
 
 $dbHost = 'localhost';
-$dbName = 'storingapp';
+$dbName = 'taskapp';
 $dbUser = 'root';
 $dbPass = '';
 
 //De url waarop jouw project staat. Géén slash aan het einde.
-$base_url = 'http://localhost/taskapp';
+$base_url = 'http://localhost/PRA-B3-TaskApp';
