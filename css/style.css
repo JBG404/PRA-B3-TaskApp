@@ -51,3 +51,22 @@ nav ul li a {
 .login-btn:hover {
     background-color: #0056b3;
 }
+
+/* HEADER */
+.banner {
+    background-image: url(/img/cumshot.jpeg);
+}
+.banner h2 {
+    font-size: 2rem;
+    margin: 10px;
+    background-color: #4a545c88;
+    font-weight: 100;
+}
+
+.banner-img {
+    padding: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
