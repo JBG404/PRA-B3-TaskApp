@@ -14,7 +14,7 @@ session_start();
         </div>
 
         <div class="login">
-            <a href="login.php" class="login-btn">Login</a>
+            <a href="<?php $base_url ?>login/login.php" class="login-btn">Login</a>
         </div>
         
     </div>
