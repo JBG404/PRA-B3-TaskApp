@@ -16,5 +16,10 @@ session_start();
         <div class="login">
             <a href="login.php" class="login-btn">Login</a>
         </div>
+        
     </div>
+    <pre style="border: 1px dashed lightgrey; padding: 10px; font-size: 20px;"><?php 
+        if(isset($_SESSION)) print_r($_SESSION);
+        else echo '$_SESSION bestaat niet';
+        ?></pre>
 </header>
