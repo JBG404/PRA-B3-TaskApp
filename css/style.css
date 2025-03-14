@@ -1,0 +1,72 @@
+ /* Main header container */
+ .header-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+}
+
+/* Logo and nav container */
+.logo-nav {
+    display: flex;
+    align-items: center;
+}
+
+/* Logo styling */
+.logo {
+    margin-right: 20px; /* Space between logo and nav */
+}
+
+/* Navigation menu */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    padding: 8px 12px;
+}
+
+/* Login button */
+.login-btn {
+    text-decoration: none;
+    color: white;
+    background-color: #007BFF;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+/* HEADER */
+.banner {
+    background-image: url(/img/cumshot.jpeg);
+}
+.banner h2 {
+    font-size: 2rem;
+    margin: 10px;
+    background-color: #4a545c88;
+    font-weight: 100;
+}
+
+.banner-img {
+    padding: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
