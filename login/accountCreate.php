@@ -12,6 +12,7 @@ session_start();
 </head>
 <?php require_once '../header.php'; ?>
 <body>
+    <div class="msg">
     <?php
      if (isset($_GET['msg'])) {
         echo '<div class="msg">'.$_GET['msg'].'</div>';
@@ -22,7 +23,7 @@ session_start();
         echo '<div class="msg">'.$_GET['msg'].'</div>';
     }
     ?>
-
+</div>
  <div class="container">
 
 
