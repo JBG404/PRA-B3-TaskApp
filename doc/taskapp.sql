@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 03, 2025 at 10:08 AM
+-- Generation Time: Apr 03, 2025 at 10:31 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -31,11 +31,21 @@ USE `taskapp`;
 
 CREATE TABLE `tasks` (
   `id` int NOT NULL,
-  `naam` varchar(255) NOT NULL,
-  `beschrijving` varchar(255) DEFAULT NULL,
-  `statues` int DEFAULT NULL,
-  `groupid` int NOT NULL
+  `taskname` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `description` text,
+  `creator` text NOT NULL,
+  `worker` text NOT NULL,
+  `status` text NOT NULL,
+  `groupid` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tasks`
+--
+
+INSERT INTO `tasks` (`id`, `taskname`, `description`, `creator`, `worker`, `status`, `groupid`) VALUES
+(1, 'testtask', 'testing tasks cus task testing is testing tasks', 'jaba', 'uhhh someone?', 'inprogress', 'B'),
+(2, 'Kitty Silly UwU Femboy Kisser Club 360 Crazy ass Shit', 'UwU Mrow~ ', 'jake', 'jake', 'inprogress', 'A');
 
 -- --------------------------------------------------------
 
@@ -82,13 +92,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
