@@ -6,6 +6,7 @@
             <nav>
                 <ul>
                     <li><a href="<?php  $base_url; ?>/index.php">Home</a></li>
+                    <li><a href="<?php  $base_url; ?>/task/index.php">TaskManager</a></li>
                 </ul>
             </nav>
         </div>
