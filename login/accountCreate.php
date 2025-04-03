@@ -15,7 +15,11 @@ session_start();
         echo '<div class="msg">'.$_GET['msg'].'</div>';
     }
     ?>
-
+    <?php
+     if (isset($_GET['msg'])) {
+        echo '<div class="msg">'.$_GET['msg'].'</div>';
+    }
+    ?>
     <form action="../backend/loginController.php" method="POST">
         <h2>Create Account</h2>
         <input type="hidden" name="action" value="create">
