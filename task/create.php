@@ -9,8 +9,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    $msg = "Jemoeteerstinloggen!";
-    header("Location:../login/login.php?msg=$msg");
+    $msg = "Je moet eerst inloggen!";
+    header("Location:../login/login.php?error=$msg");
     exit;
 } //login heebeejeebies i dont understand
 ?>
