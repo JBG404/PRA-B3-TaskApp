@@ -22,7 +22,6 @@ session_start();
         echo '<div class="msg">'.$_GET['msg'].'</div>';
     }
     ?>
-
  <div class="container">
 
 

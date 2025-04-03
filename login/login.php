@@ -17,7 +17,6 @@ session_start();
         echo '<div class="error">'.$_GET['error'].'</div>';
     }
     ?>
-
     <div class="container">
 
     <form action="../backend/loginController.php" method="POST">
