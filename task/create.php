@@ -45,7 +45,16 @@ if (!isset($_SESSION['user_id'])) {
                 <input type="text" name="worker" id="worker">
             </div>
             <div class="form-group">
-                <!-- sets status (OMG FINALLY NOT A TEXT) -->
+                <!-- sets group (OMG FINALLY NOT A TEXT) -->
+                <label for="groupid">group:</label>
+                <select name="groupid" id="groupid">
+                    <option value="A">Group A</option>
+                    <option value="B">Group B</option>
+                    <option value="C">Group C</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <!-- sets status (THERE IS ANOTHER) -->
                 <label for="status">status:</label>
                 <select name="status" id="status">
                     <option value="todo">to do</option>

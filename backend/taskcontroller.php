@@ -22,7 +22,7 @@ if ($action == 'create') {
     require_once 'conn.php';
 
     //2. Query
-    $query = "INSERT INTO `task` (taskname, description, creator, worker, status, groupid) VALUES (:taskname , :description, :creator, :worker, :status, :groupid)";
+    $query = "INSERT INTO `tasks` (taskname, description, creator, worker, status, groupid) VALUES (:taskname , :description, :creator, :worker, :status, :groupid)";
     //3. Prepare
     $statement = $conn->prepare($query);
     //4. Execute
@@ -50,7 +50,7 @@ if ($action == "update") {
     $groupid = $_POST['groupid'];
 
 
-    $query = "UPDATE `task` SET creator = :creator, worker = :worker, status = :status, groupid = :groupid WHERE id = :id";
+    $query = "UPDATE `tasks` SET creator = :creator, worker = :worker, status = :status, groupid = :groupid WHERE id = :id";
     //3. Prepare
     $statement = $conn->prepare($query);
     //4. Execute
@@ -67,7 +67,7 @@ if ($action == "update") {
 if ($action == "delete") {
     require_once 'conn.php';
     $id = $_POST['id'];
-    $query = "DELETE FROM `task` WHERE id = :id";
+    $query = "DELETE FROM `tasks` WHERE id = :id";
     $statement = $conn->prepare($query);
     $statement->execute([
         ":id" => $id,
