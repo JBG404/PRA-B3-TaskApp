@@ -69,11 +69,11 @@ form input[type="submit"]:hover {
 }
 /* Error message styling */
 .msg {
-    background-color: #ffcccb;
+    background-color: #a0ee8d;
     color: #18ba43;
     padding: 10px;
     margin: 15px 0;
-    border: 1px solid #b00000;
+    border: 1px solid #26b439;
     border-radius: 4px;
     font-size: 1rem;
 }
