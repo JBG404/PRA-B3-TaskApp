@@ -10,6 +10,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="../css/login.css">
     <title>Login</title>
 </head>
+<?php require_once '../header.php'; ?>
 <body>
     <?php
      if (isset($_GET['error'])) {
