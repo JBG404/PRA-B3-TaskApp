@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 03, 2025 at 09:13 AM
+-- Generation Time: Apr 03, 2025 at 10:08 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -47,15 +47,16 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `user` varchar(255) NOT NULL,
   `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `groupid` int DEFAULT NULL
+  `groupid` int DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user`, `password`, `groupid`) VALUES
-(9, 'user', '$2y$10$qguLeAxFANhgzZpwoE2puOh1fVfkAhvWRKIRpBFc/IPRXoIH7Q5S.', NULL);
+INSERT INTO `users` (`id`, `user`, `password`, `groupid`, `admin`) VALUES
+(1, 'user', '$2y$10$qguLeAxFANhgzZpwoE2puOh1fVfkAhvWRKIRpBFc/IPRXoIH7Q5S.', NULL, 0);
 
 --
 -- Indexes for dumped tables
@@ -87,7 +88,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
