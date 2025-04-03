@@ -13,8 +13,8 @@ session_start();
 <?php require_once '../header.php'; ?>
 <body>
     <?php
-     if (isset($_GET['msg'])) {
-        echo '<div class="msg">'.$_GET['msg'].'</div>';
+     if (isset($_GET['error'])) {
+        echo '<div class="error">'.$_GET['error'].'</div>';
     }
     ?>
     <?php
