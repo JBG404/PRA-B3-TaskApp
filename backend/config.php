@@ -12,4 +12,4 @@ $dbUser = 'root';
 $dbPass = '';
 
 //De url waarop jouw project staat. Géén slash aan het einde.
-$base_url = 'http://localhost/PRA-B3-TaskApp';
+$base_url = 'http://PRA-B3-TaskApp.test';

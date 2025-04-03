@@ -11,7 +11,9 @@
         </div>
 
         <div class="login">
-            <a href="<?php $base_url ?>login/login.php" class="login-btn">Login</a>
+            <?php if (isset($_SESSION['user_id'])) {?>
+         <a href="<?php  $base_url; ?>/login/logout.php" class="login-btn">Logout</a>
+      <?php } else { ?>  <a href="<?php  $base_url; ?>/login/login.php" class="login-btn">Login</a> <?php } ?>
         </div>
         
     </div>

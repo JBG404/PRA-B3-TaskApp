@@ -17,17 +17,17 @@ if ($action == 'login') {
     $user = $statement->fetch();
 
     if ($statement->rowCount() < 1) {
-        header("Location: $base_url/login/index.php?error=Account+Not+Found");
+        header("Location: $base_url/login/login.php?error=Account+Not+Found");
         exit;
     }
 
     if (password_verify($pass, $user['password'])) {
         session_start();
-        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_id'] = $user['id']; 
         $_SESSION['user_name'] = $user['user'];
         header("Location: $base_url/index.php");
     } else {
-        header("Location: $base_url/login/index.php?error=Incorrect+Password");
+        header("Location: $base_url/login/login.php?error=Incorrect+Password");
         exit;
     }
 }
