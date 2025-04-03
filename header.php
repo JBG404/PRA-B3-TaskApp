@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <header>
     <div class="header-container">
         <!-- Left side: Logo and Navigation -->
