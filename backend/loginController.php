@@ -34,6 +34,22 @@ if ($action == 'login') {
 if ($action == 'create') { 
     $user = $_POST['user'];
     $pass = $_POST['pass'];
+
+    $queryCheck = 'SELECT * FROM users WHERE user = :user';
+
+    $statementCheck = $conn->prepare($queryCheck);
+
+    $statementCheck->execute([
+        ':user' => $user
+    ]);
+
+    $userCheck = $statementCheck->fetch();
+
+    if ($statementCheck->rowCount() > 0) {
+        header("Location: $base_url/login/accountCreate.php?error=Account+already+exist");
+        exit;
+    }
+
     $pass = password_hash($pass, PASSWORD_DEFAULT);
 
     
