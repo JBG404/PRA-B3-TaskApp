@@ -18,15 +18,23 @@ session_start();
     }
     ?>
 
-    <form action="../backend/loginController.php" method="POST">
-        <h2>Login</h2>
-        <input type="hidden" name="action" value="login">
-        <label for="username">Username:</label>
-        <input type="text" id="user" name="user" required>
-        <label for="pass">Wachtwoord:</label>
-        <input type="password" id="pass" name="pass" required>
-        <input type="submit" value="Login">
-    </form>
+    <div class="container">
 
+    <form action="../backend/loginController.php" method="POST">
+        <div class="containerContent">
+    <h2>Login</h2>
+        <input type="hidden" name="action" value="login">
+        <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" id="user" name="user" required>
+        </div>
+        <div class="form-group">
+            <label for="pass">Wachtwoord:</label>
+            <input type="password" id="pass" name="pass" required>
+        </div>
+        <input type="submit" value="Login">
+        </div>
+    </form>
+</div>
 </body>
 </html>
