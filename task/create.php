@@ -4,6 +4,7 @@
     <?php require_once '../head.php'; ?>
 </head>
 <?php
+session_start();
 if(!isset($_SESSION['user_id'])){
     $msg="Jemoeteerstinloggen!";
     header("Location:../login/login.php?msg=$msg");
