@@ -12,13 +12,11 @@ session_start();
 </head>
 <?php require_once '../header.php'; ?>
 <body>
-    <div class="msg">
     <?php
      if (isset($_GET['error'])) {
         echo '<div class="error">'.$_GET['error'].'</div>';
     }
     ?>
-</div>
     <div class="container">
 
     <form action="../backend/loginController.php" method="POST">

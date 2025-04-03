@@ -57,6 +57,26 @@ form input[type="submit"]:hover {
     background-color: #229e3e;
 }
 
+/* Error message styling */
+.error {
+    background-color: #ffcccb;
+    color: #b00000;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #b00000;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+/* Error message styling */
+.msg {
+    background-color: #ffcccb;
+    color: #18ba43;
+    padding: 10px;
+    margin: 15px 0;
+    border: 1px solid #b00000;
+    border-radius: 4px;
+    font-size: 1rem;
+}
 
 /* Header Container */
 .header-container {
