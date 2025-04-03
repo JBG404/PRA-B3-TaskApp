@@ -5,7 +5,7 @@
             <img src="<?php $base_url ?>/img/logo-big-v4.png" alt="Developer Land" height="75" width="190" class="logo">
             <nav>
                 <ul>
-                    <li><a href="<?php $base_url ?>index.php">Home</a></li>
+                    <li><a href="<?php  $base_url; ?>/index.php">Home</a></li>
                 </ul>
             </nav>
         </div>
