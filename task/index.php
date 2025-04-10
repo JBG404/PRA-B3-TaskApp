@@ -17,4 +17,16 @@ if(!isset($_SESSION['user_id'])){
     <div class="wrapper">
         <?php require_once '../header.php'; ?>
     </div>
+
+    <!-- Add Buttons -->
+    <div class="button-container">
+        <a href="create.php" class="btn">Create New Task</a>
+    </div>
+    <div class="banner">
+            <div class="banner-img">
+                <img src="../img/logo-big-fill-only.png" alt="placeholder" height="200" width="200">
+                <a>Start your task!</a></li>
+            </div>
+        </div>
 </body>
+</html>

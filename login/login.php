@@ -39,6 +39,13 @@ session_start();
         <input type="submit" value="Login">
         </div>
     </form>
+
+    <!-- Add Create User Button -->
+    <div class="create-user">
+        <p>Don't have an account?</p>
+        <a href="./accountCreate.php" class="btn">Create User</a>
+    </div>
+
 </div>
 </body>
 </html>
