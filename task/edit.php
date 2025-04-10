@@ -1,110 +1,85 @@
-<head>
-    <title>Taskapp / Tasks / Edit</title>
-    <?php require_once '../head.php'; ?>
-</head>
 <?php
-if(!isset($_SESSION['user_id'])){
-    $msg="Jemoeteerstinloggen!";
-    header("Location:login.php?msg=$msg");
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    $msg = "Je moet eerst inloggen!";
+    header("Location: ../login/login.php?msg=$msg");
     exit;
 }
-?>
-<body>
-    <?php 
 
-    if(!isset($_GET['id'])){
-        echo "Geef in je aanpaslink op de index.php het id van betreffende item mee achter de URL in je a-element om deze pagina werkend te krijgen na invoer van je vijfstappenplan";
+if (!isset($_GET['id'])) {
+    echo "Geen taak-ID opgegeven. Ga terug naar de takenlijst.";
+    exit;
+}
+
+require_once '../backend/conn.php';
+
+// Haal het ID uit de URL
+$id = $_GET['id'];
+
+// Haal de taakgegevens op uit de database
+try {
+    $query = "SELECT * FROM tasks WHERE id = :id";
+    $statement = $conn->prepare($query);
+    $statement->execute([':id' => $id]);
+    $task = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if (!$task) {
+        echo "Taak niet gevonden.";
         exit;
-
     }
-    ?>
-    <?php
-        require_once '../header.php'; ?>
+} catch (PDOException $e) {
+    die("Fout bij het ophalen van de taak: " . $e->getMessage());
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Taskapp / Edit Task</title>
+</head>
+<body>
+    <?php require_once '../header.php'; ?>
 
     <div class="container">
-        <h1>task aanpassen</h1>
-
-        <?php
-        //Haal het id uit de URL:
-        $id = $_GET['id'];
-
-        //1. Haal de verbinding erbij
-        require_once '../backend/conn.php';
-
-        //2. Query
-         $query = "SELECT * FROM tasks WHERE id = :id";        
-
-        //3. Van query naar statement
-        $statement = $conn->prepare($query);
-
-        $statement->execute([
-        ':id' => $id,
-        ]);
-
-        
-        $task = $statement->fetch(PDO::FETCH_ASSOC);
-        ?>
-
-        <form action="../backend/taskController.php" method="POST">
+        <h1>Edit Task</h1>
+        <form action="../backend/taskcontroller.php" method="POST">
             <input type="hidden" name="action" value="update">
-            <input type="hidden" name="id" value="<?php echo $id;?>">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($task['id']); ?>">
 
+            <label for="taskname">Task Name:</label>
+            <input type="text" id="taskname" name="taskname" value="<?php echo htmlspecialchars($task['taskname']); ?>" required>
 
-                <label>Taskname:</label>
-                <?php echo $task['taskname']; ?>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="5"><?php echo htmlspecialchars($task['description']); ?></textarea>
 
-           
+            <label for="worker">Worker:</label>
+            <input type="text" id="worker" name="worker" value="<?php echo htmlspecialchars($task['worker']); ?>" required>
 
-                <label>Creator:</label>
-                <?php echo $task['creator'];?>
+            <label for="status">Status:</label>
+            <select id="status" name="status" required>
+                <option value="Pending" <?php echo $task['status'] === 'Pending' ? 'selected' : ''; ?>>Pending</option>
+                <option value="In Progress" <?php echo $task['status'] === 'In Progress' ? 'selected' : ''; ?>>In Progress</option>
+                <option value="Completed" <?php echo $task['status'] === 'Completed' ? 'selected' : ''; ?>>Completed</option>
+            </select>
 
-
-
-
-                <!-- sets description -->
-                <label for="description">description:</label>
-                <textarea type="text" name="description" id="description" line=50 rows=10><?php echo $task['description']; ?></textarea>
-            </div>
-
-            <div class="form-group">
-                <!-- sets worker -->
-                <label for="worker">current worker(s):</label>
-                <input type="text" name="worker" id="worker" value="<?php echo $task['worker']; ?>">
-            </div>
-            <div class="form-group">
-                <!-- sets group (OMG FINALLY NOT A TEXT) -->
-                <label for="groupid">group:</label>
-                <select name="groupid" id="groupid">
-                    <option value="A">Group A</option>
-                    <option value="B">Group B</option>
-                    <option value="C">Group C</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <!-- sets status (THERE IS ANOTHER) -->
-                <label for="status">status:</label>
-                <select name="status" id="status">
-                    <option value="todo">to do</option>
-                    <option value="inprogress">in progress</option>
-                    <option value="done">done</option>
-                </select>
-            </div>
-
-            
-            <input type="submit" value="save task">
-
+            <label for="groupid">Group ID:</label>
+            <select id="groupid" name="groupid" required>
+                <option value="A" <?php echo $task['groupid'] === 'A' ? 'selected' : ''; ?>>A</option>
+                <option value="B" <?php echo $task['groupid'] === 'B' ? 'selected' : ''; ?>>B</option>
+                <option value="C" <?php echo $task['groupid'] === 'C' ? 'selected' : ''; ?>>C</option>
+            </select>
+            <input type="submit" value="Save Changes">
         </form>
+
         <div class="container_delete">
-    <form action="../backend/taskenController.php" method="POST">
-            <input type="hidden" name="action" value="delete">
-            <input type="hidden" name="id" value="<?php echo $id;?>">
-            <input type="submit" value="task verwijderen" onclick="return confirm('Weet je zeker dat je de task wilt verwijderen?')">
-        </form>
+            <form action="../backend/taskcontroller.php" method="POST">
+                <input type="hidden" name="action" value="delete">
+                <input type="hidden" name="id" value="<?php echo htmlspecialchars($task['id']); ?>">
+                <input type="submit" value="Delete Task" class="delete-btn">
+            </form>
+        </div>
     </div>
-
-    </div>  
-   
-
 </body>
-
 </html>

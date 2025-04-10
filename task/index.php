@@ -51,6 +51,7 @@ try {
                     <tr>
                         <th>Task Name</th>
                         <th>Description</th>
+                        <th>Worker</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -60,6 +61,7 @@ try {
                         <tr>
                             <td><?php echo htmlspecialchars($task['taskname']); ?></td>
                             <td><?php echo htmlspecialchars($task['description']); ?></td>
+                            <td><?php echo htmlspecialchars($task['worker']); ?></td>
                             <td><?php echo htmlspecialchars($task['status']); ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $task['id']; ?>" class="btn edit-btn">Edit</a>
@@ -81,7 +83,7 @@ try {
     <div class="banner">
         <div class="banner-img">
             <img src="../img/logo-big-fill-only.png" alt="placeholder" height="200" width="200">
-            <a>Start your Tasks</a>
+            <a>Good Luck!<br>You can do this!</br></a>
         </div>
     </div>
 </body>

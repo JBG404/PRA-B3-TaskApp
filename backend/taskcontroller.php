@@ -40,20 +40,13 @@ if ($action == "update") {
     require_once 'conn.php';
 
     $id = $_POST['id'];
-    $creator = $_POST['creator'];
-    if (isset($_POST['worker'])) {
-        $worker = 1;
-    } else {
-        $worker = 0;
-    }
+    $creator = $_SESSION['user_id']; // Use the logged-in user's ID as the creator
+    $worker = $_POST['worker'];
     $status = $_POST['status'];
     $groupid = $_POST['groupid'];
 
-
     $query = "UPDATE `tasks` SET creator = :creator, worker = :worker, status = :status, groupid = :groupid WHERE id = :id";
-    //3. Prepare
     $statement = $conn->prepare($query);
-    //4. Execute
     $statement->execute([
         ":id" => $id,
         ":creator" => $creator,
