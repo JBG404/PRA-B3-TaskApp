@@ -13,8 +13,8 @@ if ($action == 'create') {
     //Variabelen vullen
     $taskname = $_POST['taskname'];
     $description = $_POST['description'];
-    $creator = $_POST['creator'];
-    $worker = $_POST['worker'];
+    $creator = $_SESSION['user_id']; // De ingelogde gebruiker is de creator
+    $worker = $_POST['worker']; // Worker wordt geselecteerd in het formulier
     $status = $_POST['status'];
     $groupid =$_POST['groupid'];
 
