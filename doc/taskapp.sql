@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 03, 2025 at 10:31 AM
+-- Generation Time: Apr 14, 2025 at 09:44 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -44,8 +44,12 @@ CREATE TABLE `tasks` (
 --
 
 INSERT INTO `tasks` (`id`, `taskname`, `description`, `creator`, `worker`, `status`, `groupid`) VALUES
-(1, 'testtask', 'testing tasks cus task testing is testing tasks', 'jaba', 'uhhh someone?', 'inprogress', 'B'),
-(2, 'Kitty Silly UwU Femboy Kisser Club 360 Crazy ass Shit', 'UwU Mrow~ ', 'jake', 'jake', 'inprogress', 'A');
+(1, 'testtask', 'testing tasks cus task testing is testing tasks', 'jaka', 'uhhh someone?', 'Pending', 'B'),
+(2, 'Kitty Silly UwU Femboy Kisser Club 360 Crazy ass Shit', 'UwU Mrow~ ', 'jake', 'jake', 'inprogress', 'A'),
+(3, 'test', 'fesadsa', '1', 'dsadsa', 'todo', 'A'),
+(4, 'testtest', 'weasfa', '3', 'dsa', 'todo', 'A'),
+(5, 'wfadsawfas', 'fwqafsawf', '1', 'fwasawdfsa', 'todo', 'B'),
+(6, 'fwdsa', 'dwadsdwa', 'MOEW', 'jake', 'todo', 'A');
 
 -- --------------------------------------------------------
 
@@ -57,7 +61,7 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `user` varchar(255) NOT NULL,
   `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `groupid` int DEFAULT NULL,
+  `groupid` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   `admin` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -66,7 +70,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `user`, `password`, `groupid`, `admin`) VALUES
-(1, 'user', '$2y$10$qguLeAxFANhgzZpwoE2puOh1fVfkAhvWRKIRpBFc/IPRXoIH7Q5S.', NULL, 0);
+(1, 'user', '$2y$10$qguLeAxFANhgzZpwoE2puOh1fVfkAhvWRKIRpBFc/IPRXoIH7Q5S.', 'A', 0),
+(3, 'user1', '$2y$10$jamQqCdJAD.ORwIluo.EQ.65vFU/q1IsG0.knBisaju.6G/4k54dG', 'A', 0);
 
 --
 -- Indexes for dumped tables
@@ -92,13 +97,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
