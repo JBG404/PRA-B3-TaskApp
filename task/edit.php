@@ -73,13 +73,7 @@ try {
             <input type="submit" value="Save Changes">
         </form>
 
-        <div class="container_delete">
-            <form action="../backend/taskcontroller.php" method="POST">
-                <input type="hidden" name="action" value="delete">
-                <input type="hidden" name="id" value="<?php echo htmlspecialchars($task['id']); ?>">
-                <input type="submit" value="Delete Task" class="delete-btn">
-            </form>
-        </div>
+    
     </div>
 </body>
 </html>
