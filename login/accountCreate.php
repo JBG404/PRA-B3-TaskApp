@@ -37,6 +37,14 @@ session_start();
         <label for="pass">Wachtwoord:</label>
         <input type="password" id="pass" name="pass" required>
         </div>
+        <div class="form-group">
+        <label for="groupid">group:</label>
+                <select name="groupid" id="groupid">
+                    <option value="A">Group A</option>
+                    <option value="B">Group B</option>
+                    <option value="C">Group C</option>
+                </select>
+        </div>
         <input type="submit" value="Create Account">
         </div>
     </form>

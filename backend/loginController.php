@@ -35,6 +35,7 @@ if ($action == 'login') {
 if ($action == 'create') { 
     $user = $_POST['user'];
     $pass = $_POST['pass'];
+    $groupid = $_POST['groupid'];
 
     $queryCheck = 'SELECT * FROM users WHERE user = :user';
 
@@ -52,15 +53,15 @@ if ($action == 'create') {
     }
 
     $pass = password_hash($pass, PASSWORD_DEFAULT);
-
     
-    $query = "INSERT INTO users (user, password) VALUES (:user, :pass)";
+    $query = "INSERT INTO users (user, password, groupid) VALUES (:user, :pass, :groupid)";
 
     $statement = $conn->prepare($query);
 
     $statement->execute([
         ':user' => $user,
-        ':pass' => $pass
+        ':pass' => $pass,
+        ':groupid' => $groupid
     ]);
     header("Location: $base_url/login/accountCreate.php?msg=Account+made");
 }
