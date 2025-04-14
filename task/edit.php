@@ -57,6 +57,9 @@ try {
             <label for="worker">Worker:</label>
             <input type="text" id="worker" name="worker" value="<?php echo htmlspecialchars($task['worker']); ?>" required>
 
+            <label for="creator">Creator:</label>
+            <input type="text" id="creator" name="creator" value="<?php echo htmlspecialchars($task['creator']); ?>" required>
+
             <label for="status">Status:</label>
             <select id="status" name="status" required>
                 <option value="Pending" <?php echo $task['status'] === 'Pending' ? 'selected' : ''; ?>>Pending</option>

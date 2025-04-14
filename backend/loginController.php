@@ -25,6 +25,7 @@ if ($action == 'login') {
         session_start();
         $_SESSION['user_id'] = $user['id']; 
         $_SESSION['user_name'] = $user['user'];
+        $_SESSION['groupid'] = $user['groupid'];
         header("Location: $base_url/index.php");
     } else {
         header("Location: $base_url/login/login.php?error=Incorrect+Password");

@@ -13,7 +13,7 @@ if ($action == 'create') {
     //Variabelen vullen
     $taskname = $_POST['taskname'];
     $description = $_POST['description'];
-    $creator = $_SESSION['user_id']; // De ingelogde gebruiker is de creator
+    $creator = $_POST['creator']; // De ingelogde gebruiker is de creator
     $worker = $_POST['worker']; // Worker wordt geselecteerd in het formulier
     $status = $_POST['status'];
     $groupid =$_POST['groupid'];
@@ -40,7 +40,7 @@ if ($action == "update") {
     require_once 'conn.php';
 
     $id = $_POST['id'];
-    $creator = $_SESSION['user_id']; // Use the logged-in user's ID as the creator
+    $creator = $_POST['creator']; // Use the logged-in user's ID as the creator
     $worker = $_POST['worker'];
     $status = $_POST['status'];
     $groupid = $_POST['groupid'];

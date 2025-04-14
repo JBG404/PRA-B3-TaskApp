@@ -15,15 +15,21 @@ error_reporting(E_ALL);
 require_once '../backend/conn.php';
 
 // Fetch tasks from the database
-try {
+
+    // $user_id = $_SESSION['user_id'];
+    // $query = "SELECT * FROM tasks ";
+    // $statement = $conn->prepare($query);
+    // $statement->execute([':user_id' => $user_id]);
+    // $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+
     $user_id = $_SESSION['user_id'];
-    $query = "SELECT * FROM tasks WHERE id = :user_id";
+    $user_group_id = $_SESSION['groupid'];
+
+    $query = "SELECT * FROM tasks WHERE groupid = :user_group_id";
     $statement = $conn->prepare($query);
-    $statement->execute([':user_id' => $user_id]);
+    $statement->execute([':user_group_id' => $user_group_id]);
     $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Error fetching tasks: " . $e->getMessage());
-}
+
 ?>
 <html>
 <head>
