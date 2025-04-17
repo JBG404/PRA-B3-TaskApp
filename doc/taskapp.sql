@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Apr 14, 2025 at 09:44 AM
+-- Generation Time: Apr 17, 2025 at 12:20 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -36,20 +36,9 @@ CREATE TABLE `tasks` (
   `creator` text NOT NULL,
   `worker` text NOT NULL,
   `status` text NOT NULL,
-  `groupid` text NOT NULL
+  `department` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `tasks`
---
-
-INSERT INTO `tasks` (`id`, `taskname`, `description`, `creator`, `worker`, `status`, `groupid`) VALUES
-(1, 'testtask', 'testing tasks cus task testing is testing tasks', 'jaka', 'uhhh someone?', 'Pending', 'B'),
-(2, 'Kitty Silly UwU Femboy Kisser Club 360 Crazy ass Shit', 'UwU Mrow~ ', 'jake', 'jake', 'inprogress', 'A'),
-(3, 'test', 'fesadsa', '1', 'dsadsa', 'todo', 'A'),
-(4, 'testtest', 'weasfa', '3', 'dsa', 'todo', 'A'),
-(5, 'wfadsawfas', 'fwqafsawf', '1', 'fwasawdfsa', 'todo', 'B'),
-(6, 'fwdsa', 'dwadsdwa', 'MOEW', 'jake', 'todo', 'A');
 
 -- --------------------------------------------------------
 
@@ -61,7 +50,7 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `user` varchar(255) NOT NULL,
   `password` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `groupid` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  `department` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
   `admin` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -69,9 +58,8 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `user`, `password`, `groupid`, `admin`) VALUES
-(1, 'user', '$2y$10$qguLeAxFANhgzZpwoE2puOh1fVfkAhvWRKIRpBFc/IPRXoIH7Q5S.', 'A', 0),
-(3, 'user1', '$2y$10$jamQqCdJAD.ORwIluo.EQ.65vFU/q1IsG0.knBisaju.6G/4k54dG', 'A', 0);
+INSERT INTO `users` (`id`, `user`, `password`, `department`, `admin`) VALUES
+(11, 'user', '$2y$10$HZ9MpNhKG9dlRj.BTxrj2.ltRQkvSM26lckgrG5eRtrufVz83LODO', 'Internal', 0);
 
 --
 -- Indexes for dumped tables
@@ -97,13 +85,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

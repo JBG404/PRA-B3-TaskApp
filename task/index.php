@@ -23,11 +23,26 @@ require_once '../backend/conn.php';
     // $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     $user_id = $_SESSION['user_id'];
-    $user_group_id = $_SESSION['groupid'];
+    $user_name = $_SESSION['user_name'];
+    $user_group_id = $_SESSION['department'];
 
-    $query = "SELECT * FROM tasks WHERE groupid = :user_group_id";
-    $statement = $conn->prepare($query);
-    $statement->execute([':user_group_id' => $user_group_id]);
+    if(empty($_GET['status'])) {
+        $query = "SELECT * FROM tasks WHERE department = :user_group_id OR creator = :user_name ORDER BY date ASC";
+        $statement = $conn->prepare($query);
+        $statement->execute([
+            ':user_group_id' => $user_group_id,
+            ":user_name" => $user_name
+        ]);
+    } else {
+        $query = "SELECT * FROM tasks WHERE department = :user_group_id AND status = :status OR creator = :user_name AND status = :status ORDER BY date ASC";
+        $statement = $conn->prepare($query);
+        $statement->execute([
+            ':user_group_id' => $user_group_id,
+            ":status" => $_GET['status'],
+            ":user_name" => $user_name
+        ]);
+    }
+
     $tasks = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 ?>
@@ -51,6 +66,15 @@ require_once '../backend/conn.php';
     <!-- Display Current Tasks -->
     <div class="task-list">
         <h2>Your Current Tasks</h2>
+        <form action="" method="GET">
+            <select name="status">
+                <option value=""> - Kies de status om de filtern -</option>
+                <option value="To Do">To Do</option>
+                <option value="inprogress">In Progress</option>
+                <option value="Done">Done</option>
+            </select>
+            <input type="submit" value="filter">
+        </form>
         <?php if (!empty($tasks)): ?>
             <table class="styled-table">
                 <thead>
@@ -58,6 +82,8 @@ require_once '../backend/conn.php';
                         <th>Task Name</th>
                         <th>Description</th>
                         <th>Worker</th>
+                        <th>department</th>
+                        <th>Deadline</th>
                         <th>Status</th>
                         <th>Actions</th>
                     </tr>
@@ -68,6 +94,8 @@ require_once '../backend/conn.php';
                             <td><?php echo htmlspecialchars($task['taskname']); ?></td>
                             <td><?php echo htmlspecialchars($task['description']); ?></td>
                             <td><?php echo htmlspecialchars($task['worker']); ?></td>
+                            <td><?php echo $task['department'] ?></td>
+                            <td><?php echo $task['Date']?></td>
                             <td><?php echo htmlspecialchars($task['status']); ?></td>
                             <td>
                                 <a href="edit.php?id=<?php echo $task['id']; ?>" class="btn edit-btn">Edit</a>

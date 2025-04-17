@@ -13,16 +13,17 @@ if ($action == 'create') {
     //Variabelen vullen
     $taskname = $_POST['taskname'];
     $description = $_POST['description'];
-    $creator = $_POST['creator']; // De ingelogde gebruiker is de creator
+    $creator = $_SESSION['user_name'];
     $worker = $_POST['worker']; // Worker wordt geselecteerd in het formulier
-    $status = $_POST['status'];
-    $groupid =$_POST['groupid'];
+    $date = $_POST['deadline'];
+    $status = "To Do";
+    $department = $_SESSION['department'];
 
     //1. Verbinding
     require_once 'conn.php';
 
     //2. Query
-    $query = "INSERT INTO `tasks` (taskname, description, creator, worker, status, groupid) VALUES (:taskname , :description, :creator, :worker, :status, :groupid)";
+    $query = "INSERT INTO `tasks` (taskname, description, creator, worker, status, department, Date) VALUES (:taskname , :description, :creator, :worker, :status, :department, :date)";
     //3. Prepare
     $statement = $conn->prepare($query);
     //4. Execute
@@ -32,7 +33,8 @@ if ($action == 'create') {
         ":creator" => $creator,
         ":worker" => $worker,
         ":status" => $status,
-        ":groupid" => $groupid,
+        ":department" => $department,
+        ":date" =>$date
     ]);
     header("location: ../task/index.php?msg=task opgeslagen");
 }
@@ -40,19 +42,25 @@ if ($action == "update") {
     require_once 'conn.php';
 
     $id = $_POST['id'];
-    $creator = $_POST['creator']; // Use the logged-in user's ID as the creator
+    $name = $_POST['taskname'];
+    $description = $_POST['description'];
+    $creator = $_SESSION['user_name'];
     $worker = $_POST['worker'];
+    $date = $_POST['deadline'];
     $status = $_POST['status'];
-    $groupid = $_POST['groupid'];
+    $department = $_POST['department'];
 
-    $query = "UPDATE `tasks` SET creator = :creator, worker = :worker, status = :status, groupid = :groupid WHERE id = :id";
+    $query = "UPDATE `tasks` SET taskname = :taskname,  description = :description, creator = :creator, worker = :worker, Date = :date, status = :status, department = :department WHERE id = :id";
     $statement = $conn->prepare($query);
     $statement->execute([
         ":id" => $id,
+        ":taskname" => $name,
+        ":description" => $description,
         ":creator" => $creator,
         ":worker" => $worker,
+        ":date" => $date,
         ":status" => $status,
-        ":groupid" => $groupid,
+        ":department" => $department,
     ]);
     header("location: ../task/index.php?msg=task Geupdated");
 }

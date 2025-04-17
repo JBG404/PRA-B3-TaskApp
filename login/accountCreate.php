@@ -38,11 +38,11 @@ session_start();
         <input type="password" id="pass" name="pass" required>
         </div>
         <div class="form-group">
-        <label for="groupid">group:</label>
-                <select name="groupid" id="groupid">
-                    <option value="A">Group A</option>
-                    <option value="B">Group B</option>
-                    <option value="C">Group C</option>
+        <label for="department">department:</label>
+                <select name="department" id="department">
+                    <option value="Internal">Internal</option>
+                    <option value="External">External</option>
+                    <option value="IT">IT</option>
                 </select>
         </div>
         <input type="submit" value="Create Account">

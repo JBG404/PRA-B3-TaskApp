@@ -30,6 +30,11 @@ try {
 } catch (PDOException $e) {
     die("Fout bij het ophalen van de taak: " . $e->getMessage());
 }
+
+$query = "SELECT * FROM users";
+$statement = $conn->prepare($query);
+$statement->execute();
+$users = $statement->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,24 +59,34 @@ try {
             <label for="description">Description:</label>
             <textarea id="description" name="description" rows="5"><?php echo htmlspecialchars($task['description']); ?></textarea>
 
-            <label for="worker">Worker:</label>
-            <input type="text" id="worker" name="worker" value="<?php echo htmlspecialchars($task['worker']); ?>" required>
-
             <label for="creator">Creator:</label>
-            <input type="text" id="creator" name="creator" value="<?php echo htmlspecialchars($task['creator']); ?>" required>
+            <input type="text" id="creator" name="creator" value="<?php echo htmlspecialchars($task['creator']); ?>" disabled>
+
+            <label for="worker">Worker:</label>
+            <select name="worker" id="worker">
+                <option value="<?php echo $task['worker']; ?>"><?php echo $task['worker']; ?></option>
+                <?php foreach($users as $user) :?>
+                    <option value="<?php echo $user['user'] ?>"><?php echo $user['user'] ?></option>
+                <?php endforeach; ?>
+            </select>
+
+            <div class="form-group">
+    <label for="deadline">Deadline: </label>
+    <input type="date" name="deadline" id="deadline" value="<?php echo $task['Date']?>" required>
+</div>
 
             <label for="status">Status:</label>
             <select id="status" name="status" required>
-                <option value="Pending" <?php echo $task['status'] === 'Pending' ? 'selected' : ''; ?>>Pending</option>
-                <option value="In Progress" <?php echo $task['status'] === 'In Progress' ? 'selected' : ''; ?>>In Progress</option>
-                <option value="Completed" <?php echo $task['status'] === 'Completed' ? 'selected' : ''; ?>>Completed</option>
+                    <option value="To Do">To Do</optio>
+                    <option value="inprogress">In Progress</option>
+                    <option value="Done">Done</option>
             </select>
 
-            <label for="groupid">Group ID:</label>
-            <select id="groupid" name="groupid" required>
-                <option value="A" <?php echo $task['groupid'] === 'A' ? 'selected' : ''; ?>>A</option>
-                <option value="B" <?php echo $task['groupid'] === 'B' ? 'selected' : ''; ?>>B</option>
-                <option value="C" <?php echo $task['groupid'] === 'C' ? 'selected' : ''; ?>>C</option>
+            <label for="department">department:</label>
+            <select id="department" name="department" required>
+                <option value="Internal" <?php echo $task['department'] === 'Internal' ? 'selected' : ''; ?>>Internal</option>
+                <option value="External" <?php echo $task['department'] === 'External' ? 'selected' : ''; ?>>External</option>
+                <option value="IT" <?php echo $task['department'] === 'IT' ? 'selected' : ''; ?>>IT</option>
             </select>
             <input type="submit" value="Save Changes">
         </form>
